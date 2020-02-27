@@ -2,6 +2,7 @@
   background-color: #ffb6b9;
   color: #996D6F;
   text-align: right;
+  direction: rtl;
   margin: 5px auto;
   padding: 0px 5px 0px 5px;
   width: 432px;
@@ -10,6 +11,8 @@
   border-radius: 10px 10px;
   font-family: 'Noto Sans', sans-serif;
   font-size: 3rem;
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow: clip;
 }
 

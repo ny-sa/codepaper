@@ -6,14 +6,22 @@
   margin: 5px auto;
   padding: 0px 5px 0px 5px;
   width: 432px;
-  height: 65px;
+  height: 43px;
   border-style: none;
   border-radius: 10px 10px;
   font-family: 'Noto Sans', sans-serif;
-  font-size: 3rem;
+  font-size: 2rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: clip;
+}
+
+.display::before {
+  content: '\200E'
+}
+
+.display::after {
+  content: '\200E'
 }
 
 .display-container {

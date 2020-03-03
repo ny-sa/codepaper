@@ -1,24 +1,34 @@
 let mem = [],
   ans = '',
+  expressionRender,
   calculated = false;
 //let nums = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
 
+const parseToExpression = () => {
+  let string = ''
+  mem.forEach((e, i) => {
+    if (e === ')' || mem[i - 1] === '(')
+      string += `${e}`
+    else
+      string += ` ${e}`
+  })
+  return string.trim()
+}
+
 const render = () => {
   if (calculated) {
-    console.log(ans)
-    document.querySelector('.display').textContent = ans;
+    //console.log(ans)
+    document.querySelector('.current').textContent = ans;
   } else if (mem.length > 0) {
-    let string = ''
-    mem.forEach((e, i) => {
-      if (e === ')' || mem[i - 1] === '(')
-        string += `${e}`
-      else
-        string += ` ${e}`
-    })
-    document.querySelector('.display').textContent = string.trim()
+    expressionRender = parseToExpression();
+    document.querySelector('.current').textContent = expressionRender
   }
   else
-    document.querySelector('.display').textContent = ''
+    document.querySelector('.current').textContent = ''
+}
+
+const renderLast = (input) => {
+  document.querySelector('.last').textContent = input;
 }
 
 const calculate = (arr) => {
@@ -31,7 +41,8 @@ const calculate = (arr) => {
     pLevel = 0,
     lList = [],
     rList = [],
-    formerLength;
+    formerLength,
+    answer;
 
   const add = (op) => temp[op-1] + temp[op+1],
     subtract = (op) => temp[op-1] - temp[op+1],
@@ -72,13 +83,13 @@ const calculate = (arr) => {
     formerLength = temp.length;
     temp[lList[i]] = '*', temp[rList[i]] = '*';
 
-    console.log(temp)
+    //console.log(temp)
 
     temp = [
       ...((/[0-9]/.test(temp[lList[i] - 1])) ? 
       temp.slice(0, lList[i] + 1) : 
       temp.slice(0, lList[i])),
-      calculate(temp.slice(lList[i] + 1, rList[i])), 
+      Number(calculate(temp.slice(lList[i] + 1, rList[i]))), 
       ...((/[0-9]/.test(temp[rList[i] + 1])) ? 
       temp.slice(rList[i], temp.length) : 
       temp.slice(rList[i] + 1, temp.length))
@@ -92,8 +103,8 @@ const calculate = (arr) => {
     lList = lList.map(e => e -= formerLength - temp.length) 
     rList = rList.map(e => e -= formerLength - temp.length) 
 
-    console.log(lList)
-    console.log(rList)
+    //console.log(lList)
+    //console.log(rList)
   }
 
   //console.log(temp)
@@ -120,7 +131,10 @@ const calculate = (arr) => {
       mergeValues(1, add)
     }
   }
-  return temp[0];
+  //console.log(temp[0])
+  answer = `${temp[0].toFixed(10)}`.split('.')
+  answer[1] = answer[1].replace(/0/g, '');
+  return (answer[1].length > 0) ? answer.join('.') : answer[0]  
 }
 
 document.querySelectorAll('.num').forEach(e => {
@@ -173,16 +187,18 @@ document.querySelector('.point')
 
 document.querySelector('.clear')
   .addEventListener('click', () => {
-    if (calculated)
+    if (calculated) {
       calculated = false
+    }
     mem = []
     render()
   });
 
 document.querySelector('.clear-entry')
   .addEventListener('click', () => {
-    if (calculated)
+    if (calculated) {
       calculated = false
+    }
     if (mem.length > 1)
       mem.pop(mem.length - 1)
     else
@@ -192,8 +208,9 @@ document.querySelector('.clear-entry')
 
 document.querySelector('.parL')
   .addEventListener('click', () => {
-    if (calculated)
+    if (calculated) {
       calculated = false
+    }
     if (mem[mem.length - 1] === '.')
       mem[mem.length - 1] = '0.'
     mem.push(event.target.textContent)
@@ -222,6 +239,7 @@ document.querySelector('.equals')
         calculated = true
         //console.log(ans)
         render()
+        renderLast(`${expressionRender} = `)
       }
     }
   })

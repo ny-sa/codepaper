@@ -1,12 +1,10 @@
 .display {
   background-color: #003147;
-  color: #ffeb7d;
   text-align: right;
   direction: rtl;
-  margin: 5px auto;
+  /*margin: 5px auto;*/
   padding: 0px 5px 0px 5px;
   width: 432px;
-  height: 45px;
   border-style: none;
   border-radius: 10px 10px;
   font-family: 'Noto Sans', sans-serif;
@@ -14,6 +12,24 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: clip;
+}
+
+.last {
+  border-bottom-left-radius: 0px 0px;
+  border-bottom-right-radius: 0px 0px;
+  margin: 5px auto 0px auto;
+  height: 30px;
+  font-size: 1.7em;
+  color: #bdf3ff
+}
+
+.current {
+  border-top-left-radius: 0px 0px;
+  border-top-right-radius: 0px 0px;
+  margin: 0px auto 5px auto;
+  height: 60px;
+  font-size: 2.8rem;
+  color: #ffeb7d;
 }
 
 .display::before {
@@ -26,7 +42,7 @@
 
 .display-container {
   background-color: #edf7fa;
-  margin: 10% auto auto auto;
+  margin: 5% auto auto auto;
   width: 452px;
   padding: 5px;
 }

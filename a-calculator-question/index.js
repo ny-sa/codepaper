@@ -133,7 +133,14 @@ const calculate = (arr) => {
   }
   //console.log(temp[0])
   answer = `${temp[0].toFixed(10)}`.split('.')
-  answer[1] = answer[1].replace(/0/g, '');
+  answer[1] = answer[1].split('')
+  for (let i = answer[1].length - 1; i >= 0; i--) {
+    if (answer[1][i] === '0') 
+      answer[1].pop();
+    else
+      break;
+  }
+  answer[1] = answer[1].join('')
   return (answer[1].length > 0) ? answer.join('.') : answer[0]  
 }
 
@@ -141,6 +148,7 @@ document.querySelectorAll('.num').forEach(e => {
   e.addEventListener('click', event => {
     if (calculated) {
       mem.push(event.target.textContent);
+      renderLast(`Ans = ${ans} `)
       calculated = false
     }
     else if (mem.length < 1 || !/[\.0-9]/.test(mem[mem.length - 1]))
@@ -157,6 +165,7 @@ document.querySelectorAll('.op').forEach(e => {
   e.addEventListener('click', event => {
     if (calculated) {
       mem.push(ans, event.target.textContent)
+      renderLast(`Ans = ${ans} `)
       calculated = false
     }
     else if (mem.length !== 0 && mem[mem.length - 1] !== '(') {
@@ -176,6 +185,7 @@ document.querySelector('.point')
   .addEventListener('click', event => {
     if (calculated) {
       mem.push(`${event.target.textContent}`);
+      renderLast(`Ans = ${ans} `)
       calculated = false
     }
     else if (mem.length < 1 || !/[\.0-9]/.test(mem[mem.length - 1]))
@@ -188,6 +198,7 @@ document.querySelector('.point')
 document.querySelector('.clear')
   .addEventListener('click', () => {
     if (calculated) {
+      renderLast(`Ans = ${ans} `)
       calculated = false
     }
     mem = []
@@ -197,6 +208,7 @@ document.querySelector('.clear')
 document.querySelector('.clear-entry')
   .addEventListener('click', () => {
     if (calculated) {
+      renderLast(`Ans = ${ans} `)
       calculated = false
     }
     if (mem.length > 1)
@@ -209,6 +221,7 @@ document.querySelector('.clear-entry')
 document.querySelector('.parL')
   .addEventListener('click', () => {
     if (calculated) {
+      renderLast(`Ans = ${ans} `)
       calculated = false
     }
     if (mem[mem.length - 1] === '.')

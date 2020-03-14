@@ -31,7 +31,7 @@ input {
   visibility: hidden;
 }
 
-label {
+.switch {
   background-color: #3c9aff;
   position: relative;
   border-radius: 100px;
@@ -43,7 +43,7 @@ label {
   transition: background-color 0.4s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-label:before {
+.switch:before {
   content: '';
   position: absolute;
   background-color: #ffffff;
@@ -53,10 +53,6 @@ label:before {
   width: 32px;
   height: 32px;
   transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-input:checked + label:before {
-  transform: translateX(32px);
 }
 
 .sidebar {
@@ -194,13 +190,17 @@ body.darkness {
 
 .darkness.bar-line,
 .darkness.line,
-.darkness.circle {
+.darkness.switch {
   background-color: #ff4d76;
 }
 
 .darkness.sidebar h2:active,
 .darkness.navbar-container #focused {
   color: #ff4d76;
+}
+
+.switch.darkness:before {
+  transform: translateX(32px);
 }
 
 @media only screen and (max-height: 450px) {
@@ -280,4 +280,10 @@ body.darkness {
     margin-top: 100px;
     height: calc(100% - 100px);
   }
+}
+
+.no-anim,
+.no-anim #focused,
+.no-anim:before {
+  transition: none;
 }

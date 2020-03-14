@@ -36,11 +36,11 @@ label {
   position: relative;
   border-radius: 100px;
   display: block;
-  margin: -12px auto 0px auto;
+  margin: -10px auto 0px auto;
   cursor: pointer;
   width: 72px;
   height: 40px;
-  transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: background-color 0.4s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 label:before {
@@ -53,10 +53,6 @@ label:before {
   width: 32px;
   height: 32px;
   transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-input:checked+label {
-  background-color: #ff4d76;
 }
 
 input:checked+label:before {
@@ -73,6 +69,7 @@ input:checked+label:before {
   left: 0px;
   box-sizing: border-box;
   user-select: none;
+  z-index: 1;
   transition: background-color 0.4s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
@@ -81,8 +78,12 @@ input:checked+label:before {
 }
 
 .toggle-container {
+  position: absolute;
+  top: 0px;
+  left: 50%;
   margin: 20px;
-  width: auto;
+  margin-left: -100px;
+  width: 200px;
   height: 60px;
   text-align: center;
 }
@@ -110,19 +111,25 @@ input:checked+label:before {
 }
 
 .navbar-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  top: 150px;
+  left: 50%;
   text-align: left;
-  margin: 90% 20px 0px;
-  position: relative;
-  width: auto;
-  padding-left: 39px;
+  margin: 20px;
+  margin-left: -100px;
+  width: 200px;
+  height: calc(100% - 150px);
 }
 
 .navbar-container h2 {
   cursor: pointer;
-  margin-block-start: 3em;
-  margin-block-end: 3em;
   transform: translate(-3px);
-  transition: transform 0.15s ease-out
+  margin-left: 39px;
+  transition: transform 0.15s ease-out;
 }
 
 .navbar-container h2:hover {
@@ -135,7 +142,7 @@ input:checked+label:before {
   transition: transform 0.15s ease-in, color 0.4s cubic-bezier(0.77, 0, 0.175, 1); 
 }
 
-.panel-line {
+.bar-line {
   background-color: #3c9aff;
   position: absolute;
   width: 2px;
@@ -145,13 +152,12 @@ input:checked+label:before {
   transition: background-color 0.4s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-.example {
-  position: relative;
+.content {
   height: 100%;
   width: auto;
   margin-left: 250px;
   overflow: auto;
-  padding: 0px 60px;
+  padding: 0px 40px;
   box-sizing: border-box;
 }
 
@@ -161,7 +167,7 @@ input:checked+label:before {
   margin: 50px auto;
   padding: 20px 0px;
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   display:flex;
   flex-direction: column;
   transition: background-color 0.4s cubic-bezier(0.77, 0, 0.175, 1);
@@ -184,10 +190,90 @@ body.darkness {
   background-color: #383e54;
 }
 
-.darkness.panel-line, .darkness.line {
+.darkness.bar-line, .darkness.line, .darkness.circle {
   background-color: #ff4d76;
 }
 
 .darkness.sidebar h2:active, .darkness.navbar-container #focused {
   color: #ff4d76
 }
+
+@media only screen and (max-height: 450px) {
+  .navbar-container {
+    top: 120px;
+  }
+  .navbar-container h2 {
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .sidebar {
+    height: 100px;
+    width: 100%;
+    padding: 0%;
+  }
+
+  .toggle-container {
+    left: 0%;
+    height: 100%;
+    width: 250px;
+    margin: 0px;
+  }
+
+  .toggle-container h2 {
+    position: absolute;
+    left: 25px;
+    top: 35px;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+  }
+  
+  label {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    margin: 0px;
+    left: 160px;
+    top: 25px;
+    width: 72px;
+    height: 40px;
+  }
+
+  .navbar-container {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    top: 0px;
+    left: 250px;
+    text-align: left;
+    margin: 0px;
+    width: calc(100% - 250px);
+    height: 100px;
+  }
+
+  .navbar-container h2 {
+    margin-block-start: 0.3em;
+    margin-block-end: 0.3em;
+    margin-left: 20px;
+  }  
+
+  .bar-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    top: 98px;
+    left: 0px;
+  }
+  
+  .content {
+    margin-left: 0px;
+    margin-top: 100px;
+    height: calc(100% - 100px);
+  }
+}
+

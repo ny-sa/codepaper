@@ -20,7 +20,7 @@
   margin: 5px auto 0px auto;
   height: 30px;
   font-size: 1.6em;
-  color: #bdf3ff
+  color: #bdf3ff;
 }
 
 .current {
@@ -33,11 +33,11 @@
 }
 
 .display::before {
-  content: '\200E'
+  content: '\200E';
 }
 
 .display::after {
-  content: '\200E'
+  content: '\200E';
 }
 
 .display-container {
@@ -73,17 +73,18 @@ button {
   font-family: 'Noto Sans', sans-serif;
   font-size: 2rem;
   transition-property: background-color, color;
-  transition-duration: .2s;
+  transition-duration: 0.2s;
 }
 
 button:hover {
   background-color: #fff3b8;
   color: #655b82;
   transition-property: all;
-  transition-duration: .2s;
+  transition-duration: 0.2s;
 }
 
-button:active, button.active {
+button:active,
+button.active {
   background-color: #c2ffe1;
   color: #655b82;
   transition-property: all;

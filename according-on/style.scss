@@ -1,0 +1,29 @@
+body {
+  background-color: #ddd;
+}
+
+.accord-frame {
+  background-color: #aaa;
+  max-width: 400px;
+  margin: 100px auto 0;
+  box-sizing: border-box;
+  padding: 0 20px;
+  h1 {
+    text-align: center;
+    position: relative;
+    top: 7px;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0px;
+    li {
+      line-height: 30px;
+      border-top: 2px solid #000;
+      input[type=checkbox] {
+        height: 0;
+        width: 0;
+        visibility: hidden;
+      }
+    }
+  }
+}

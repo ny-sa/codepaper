@@ -1,35 +1,67 @@
+* {
+  font-family: 'Sen', sans-serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 body {
-  background-color: #ddd;
+  background-color: #eee;
+}
+
+h1 {
+  text-align: center;
+  line-height: 100px;
+  -webkit-margin-before: 0px;
+          margin-block-start: 0px;
+  -webkit-margin-after: 0px;
+          margin-block-end: 0px;
 }
 
 .accord-frame {
-  background-color: #aaa;
-  max-width: 400px;
+  background-color: #a3c5e4;
+  max-width: 600px;
   margin: 100px auto 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 0 20px;
-}
-
-.accord-frame h1 {
-  text-align: center;
-  position: relative;
-  top: 7px;
 }
 
 .accord-frame ul {
+  margin-top: 0px;
   list-style: none;
   padding-left: 0px;
+  color: #333;
 }
 
-.accord-frame ul li {
-  line-height: 30px;
-  border-top: 2px solid #000;
-}
-
-.accord-frame ul li input[type=checkbox] {
+.accord-frame ul li input[type='checkbox'] {
   height: 0;
   width: 0;
   visibility: hidden;
+}
+
+.accord-frame ul li input[type='checkbox']:checked ~ p {
+  padding: 0px 20px;
+  max-height: 0;
+}
+
+.accord-frame ul li label {
+  line-height: 60px;
+  text-align: center;
+  display: block;
+  margin-top: -8px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.accord-frame ul li p {
+  background-color: #8aa7c2;
+  -webkit-margin-before: 0em;
+          margin-block-start: 0em;
+  -webkit-margin-after: 0em;
+          margin-block-end: 0em;
+  font-size: 1em;
+  margin: 0px;
+  padding: 20px;
+  max-height: 200px;
+  overflow: hidden;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 /*# sourceMappingURL=style.css.map */

@@ -57,11 +57,11 @@ p {
     display: inline-block;
     margin: 0px 40px;
   }
-  @extend %border;
   input, label {
     position: relative;
-    left: 50px;
+    left: 70px;
   }
+  @extend %border;
   @media (max-width: 768px) {
     padding-bottom: 30px;
     text-align: center;

@@ -63,7 +63,7 @@ p {
 
 .top-section input, .top-section label {
   position: relative;
-  left: 50px;
+  left: 70px;
 }
 
 @media (max-width: 768px) {
@@ -186,4 +186,3 @@ p {
   -webkit-transition: 0.25s;
   transition: 0.25s;
 }
-/*# sourceMappingURL=style.css.map */

@@ -1,63 +1,168 @@
-$background-color: #eee;
-$accordion-color: rgb(163, 197, 228);
-$inside-color: rgb(138, 167, 194);
-$text-color: #333;
+$backdrop-color: #777;
+$accordion-color: #a6edff;
+$border-color: #91d2e4;
+$hover-color: #4adbff;
+
+$text-color: #444;
+
+%border {
+  border-bottom: 1px solid $border-color;
+}
+
+%chevron {
+  display: inline-block;
+  color: $text-color;
+  border-style: solid;
+  border-width: 0.1em 0.1em 0 0;
+  height: 0.4em;
+  width: 0.4em;
+  transform-origin: 72% 28%;
+  transform: rotate(135deg);
+}
 
 * {
-  font-family: 'Sen', sans-serif;;
+  font-family: 'Sen', sans-serif;
   box-sizing: border-box;
 }
 
 body {
-  background-color: $background-color;
+  background-color: $backdrop-color;
+  margin: 1%;
 }
 
 h1 {
-  text-align: center;
-  line-height: 100px;
   margin-block-start: 0px;
-  margin-block-end:0px;
+  margin-block-end: 0px;
+  line-height: 79px;
+  font-size: 2em;
+  @media (max-width: 768px) {
+    font-size: 3em;
+  }
+}
+
+p {
+  font-size: 1em;
+  @media (max-width: 768px) {
+    font-size: 1.4em;
+  }
+}
+
+.tail-end {
+  width: 100%;
+  height: 10px;
+}
+
+.top-section {
+  h1 {
+    display: inline-block;
+    margin: 0px 40px;
+  }
+  @extend %border;
+  input, label {
+    position: relative;
+    left: 50px;
+  }
+  @media (max-width: 768px) {
+    padding-bottom: 30px;
+    text-align: center;
+    h1 {
+      margin: 0px;
+    }
+    input {
+      position: absolute;
+      height: 20px;
+      width: 20px;
+      top: 80px;
+      left: 24%;
+    }
+    label {
+      position: absolute;
+      top: 80px;
+      left: 32%;
+      font-size: 1.4em;
+    }
+  }
 }
 
 .accord-frame {
   background-color: $accordion-color;
   max-width: 600px;
-  margin: 100px auto 0;
+  margin: 50px auto 0;
+  border-radius: 10px;
+  color: $text-color;
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
   ul {
-    margin-top: 0px;
+    margin: 0px;
     list-style: none;
     padding-left: 0px;
-    color: $text-color;
     li {
-      input[type='checkbox'] {
+      input {
         height: 0;
         width: 0;
+        margin: 0;
         visibility: hidden;
         &:checked {
+          & ~ label{
+            border-bottom-style: hidden;
+            background-color: $hover-color;
+          }
+          & ~ label:after {
+            transform: rotate(-45deg);
+          }
           & ~ p {
-            padding: 0px 20px;
-            max-height: 0;
+            padding: 15px;
+            max-height: 200px;
+          }
+        }
+        @media (max-width: 768px) {
+          &:checked {
+            & ~ p {
+              max-height: 350px;
+            }
           }
         }
       }
       label {
-        line-height: 60px;
+        background-color: $accordion-color;
+        line-height: 49px;
         text-align: center;
         display: block;
-        margin-top: -8px;
         width: 100%;
+        font-weight: 600;
+        font-size: 1.2em;
         cursor: pointer;
+        @extend %border;
+        border-bottom-style: solid;
+        transition: background-color 0.15s linear;
+        @media (max-width: 768px) {
+          font-size: 1.7em;
+        }
+        &:hover {
+          background-color: $hover-color;
+        }
+        &:after {
+          @extend %chevron;
+          position: relative;
+          right: 35px;
+          top: 22px;
+          float: right;
+          content: '';
+          transition: 0.25s cubic-bezier(0.77, 0, 0.175, 1);
+        }
       }
       p {
-        background-color: $inside-color;
+        background-color: $border-color;
         margin-block-start: 0em;
         margin-block-end: 0em;
-        font-size: 1em;
         margin: 0px;
-        padding: 20px;
-        max-height: 200px;
+        padding: 0px 15px;
+        max-height: 0;
         overflow: hidden;
-        transition: 0.2s;
+        transition: 0.25s;
       }
     }
   }
